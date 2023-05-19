@@ -75,12 +75,12 @@ function cambiarCamara() {
 
 function predecir() {
     if (modelo != null) {
-        //Pasar canvas a version 150x150
-        resample_single(canvas, 150, 150, othercanvas);
+        //Pasar canvas a version 224x224
+        resample_single(canvas, 224, 224, othercanvas);
 
         var ctx2 = othercanvas.getContext("2d");
 
-        var imgData = ctx2.getImageData(0,0,150,150);
+        var imgData = ctx2.getImageData(0,0,224,224);
         var arr = []; //El arreglo completo
         var arr150 = []; //Al llegar a arr150 posiciones se pone en 'arr' como un nuevo indice
         for (var p=0, i=0; p < imgData.data.length; p+=4) {
