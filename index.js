@@ -88,7 +88,7 @@ function predecir() {
             var green = imgData.data[p+1]/255;
             var blue = imgData.data[p+2]/255;
             arr150.push([red, green, blue]); //Agregar al arr150 y normalizar a 0-1. Aparte queda dentro de un arreglo en el indice 0... again
-            if (arr150.length == 150) {
+            if (arr150.length == 224) {
                 arr.push(arr150);
                 arr150 = [];
             }
@@ -96,11 +96,12 @@ function predecir() {
 
         arr = [arr]; //Meter el arreglo en otro arreglo por que si no tio tensorflow se enoja >:(
         //Nah basicamente Debe estar en un arreglo nuevo en el indice 0, por ser un tensor4d en forma 1, 150, 150, 1
+        console.log(arr)
         var tensor4 = tf.tensor4d(arr);
         var resultados = modelo.predict(tensor4).dataSync();
         var mayorIndice = resultados.indexOf(Math.max.apply(null, resultados));
 
-        var clases = ['Gato', 'Perro'];
+        var clases = ['Daisy', 'Dandelion', 'Rose', 'Sunflower', 'Tulip'];
         console.log("Prediccion", clases[mayorIndice]);
         document.getElementById("resultado").innerHTML = clases[mayorIndice];
     }
